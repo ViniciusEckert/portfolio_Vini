@@ -54,6 +54,34 @@
   font-size: 22px;
 }
 
+.rodape{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #011422;
+  border-top: 2px solid #0e4e7c;
+  gap: 10px;
+}
+
+.rodape a{
+  transition: all 500ms ease-in-out;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.rodape a:hover{
+  transform: translateY(-15px) scale(1.3);
+}
+
+
+.card img{
+  width: 100px;
+  height: auto;
+}
+
+
+
 @media (width <=768px) {
   .s1{
     padding-top: 50px;
