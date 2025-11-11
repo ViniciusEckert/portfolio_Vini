@@ -9,10 +9,36 @@ import cssImg from '../public/css.png'
 import jsImg from '../public/js.png'
 import viteImg from '../public/vite.png'
 import reactImg from '../public/react.png'
-import vercelImg from '../public/vercel.png'
+import vercelImg from '../public/vecel.png'
+import animaImg from '../public/braço.png'
 
+import { useState } from 'react'
 
 function App() {
+
+  const defaultPhoneNumber = "5541988956815"
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+
+  const handleChange = (event) => {
+    const {name, value} = event.target
+    setFormData({...formData, [name]: value})
+  }
+
+  const handleZap = () => {
+    const {name, email, message} = formData
+
+    const urlZap = `https://api.whatsapp.com/send?phone=${defaultPhoneNumber}&text=
+    Nome:%20${name}%0D%0A
+    Email:%20${email}%0D%0A
+    Mensagem:%20${message}%0D%0A`
+
+    window.open(urlZap, "_blank")
+  }
 
   return (
    <>
@@ -20,7 +46,9 @@ function App() {
     <a href="#s1">Home</a>
     <a href="#s2">Cards</a>
     <a href="#s3">Video</a>
+    <a href="#s5">Planejamento</a>
     <a href="#s4">Contato</a>
+    
    </nav>
    <main>
     <section className={styles.s1} id="s1">
@@ -75,12 +103,27 @@ function App() {
       </div>
     </section>
 
-    <section id="s3">
-      <h2>sessao 3</h2>
+    <section id="s3" className={styles.s3}>
+      <h2>Repositorio</h2>
     </section>
 
-    <section id="s4">
-      <h2>sessao 4</h2>
+    <section className={styles.s5} id="s5">
+      <div className={styles.anima}>
+        <img  width={200} src={animaImg} alt="braço" />
+      </div>
+    </section>
+
+    <section id="s4" className={styles.s4}>
+      <h2>CONTATO</h2>
+      <div className={styles.formData}>
+        <label htmlFor="name">Informe seu nome</label>
+        <input type="text" id="name" name='name' value={formData.name} onChange={handleChange} required/>
+        <label htmlFor="email">Informe seu email</label>
+        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required/>
+        <label htmlFor="message">Informe uma mensagem</label>
+        <textarea name="message" id="message" value={formData.message} onChange={handleChange} cols="30" rows="10" required></textarea>
+        <button onClick={handleZap}>Enviar mensagem</button>
+      </div>
     </section>
    </main>
     <footer className ={styles.rodape}>
